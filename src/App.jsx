@@ -23,14 +23,14 @@ function App() {
 
   return (
     <>
-     <h1 className='text-2xl'>Funcionalidad del carrito de compras</h1>
-     <h2 class="text-2xl ml-10 mt-10 ">Products</h2>
+     <h1 className='text-2xl mx-auto w-fit mt-10'>Funcionalidad del carrito de compras</h1>
+     
 
      <div class="bg-white">
         <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
          
-
-          <div style={{'display': 'flex', 'flexWrap':'wrap'}} class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        <h2 class="text-2xl mb-3  font-bold  ">Products</h2>
+          <div  class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
            
            {products  && products.map(product=>{
             return <CardProduct completeProduct={product}/>
@@ -47,7 +47,7 @@ function App() {
 
       {productsCart.products.length > 0 && productsCart.products.map(myproduct =>{
 
-        return  <li>{myproduct.price}</li>
+        return  <li>{myproduct.price}  cantItmes: {myproduct.cantItems}</li>
       })}
 
      

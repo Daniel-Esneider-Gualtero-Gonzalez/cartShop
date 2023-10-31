@@ -20,7 +20,7 @@ export const ProviderContextCartShop = ({children})=>{
 
         setProductsCart(e=>{
 
-            return {...e , products : [...e.products, product]  , cantproduct : e.cantproduct + 1 ,preciofinal : e.preciofinal + product.price}
+            return {...e , products : [...e.products, {...product,cantItems: 0}]  , cantproduct : e.cantproduct + 1 ,preciofinal : e.preciofinal + product.price}
         })
     }
 
@@ -38,9 +38,42 @@ export const ProviderContextCartShop = ({children})=>{
 
     }
 
+    const addCantItemProdu = (productid)=>{
+        const newCantproduct =  productsCart.products.map(products => {
+            if(products.id === productid){
+                products["cantItems"] = products.cantItems ?  products.cantItems + 1 : 1
+            }
+            
+            return products
+        })
+
+        return setProductsCart(e=> {
+            return {...e,products : newCantproduct}
+        })
+        
+
+
+    }
+
+
+    const delCantItemProduct = (productid)=>{
+        const newCantproduct =  productsCart.products.map(products => {
+            if(products.id === productid){
+               
+                products["cantItems"] = products.cantItems && products.cantItems > 0 ?  products.cantItems - 1 : null
+            }
+            
+            return products
+        })
+
+        return setProductsCart(e=> {
+            return {...e,products : newCantproduct}
+        })
+    }
+
     useEffect(()=> console.log("mis productos", productsCart), [productsCart])
 
-    return <contextCartShop.Provider value={{productsCart,addToCartProduct,deleteProductCart}}>
+    return <contextCartShop.Provider value={{productsCart,addToCartProduct,deleteProductCart,addCantItemProdu,delCantItemProduct}}>
 
         {children}
     </contextCartShop.Provider>

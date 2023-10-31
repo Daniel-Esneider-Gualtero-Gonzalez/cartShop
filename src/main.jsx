@@ -6,8 +6,9 @@ import { ProviderContextCartShop } from './context/cardShop'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/* <NavBar /> */}
+    
     <ProviderContextCartShop>
+      <NavBar />
     <App />
     </ProviderContextCartShop>
   </React.StrictMode>,
